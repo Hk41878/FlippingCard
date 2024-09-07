@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Flipping Card UI Design</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+  <body>
+    <section>
+      <div id="card-container" class="container">
+        <div class="card front-face">
+          <header>
+            <span class="logo">
+              <img src="logo.png" alt="" />
+              <h5>Master Card</h5>
+            </span>
+            <img src="chip.png" alt="" class="chip" />
+          </header>
+
+          <div class="card-details">
+            <div class="name-number">
+              <h6>Card Number</h6>
+              <h5 class="number">8050 2030 3020 5040</h5>
+              <h5 class="name">Honey Kumar Vadhwa</h5>
+            </div>
+
+            <div class="valid-date">
+              <h6>Valid Thru</h6>
+              <h5>05/28</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="card back-face">
+          <h6>
+            For customer service call <a href="tel:+393319021033">+393319021033</a>
+            or email at <a href="mailto:hk41878@gmail.com">hk41878@gmail.com</a>
+          </h6>
+          <span class="magnetic-strip"></span>
+          <div class="signature"><i>007</i></div>
+          <div class="social-icons">
+            <a href="https://www.facebook.com" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/honeyvadhwa" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+          
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Get the card container
+      const cardContainer = document.getElementById('card-container');
+
+      // Function to handle outside click
+      function handleOutsideClick(event) {
+        if (!cardContainer.contains(event.target)) {
+          cardContainer.style.transform = 'rotateY(0deg)';
+          document.removeEventListener('click', handleOutsideClick);
+        }
+      }
+
+      // Add event listener to the card container for flipping
+      cardContainer.addEventListener('click', function () {
+        cardContainer.style.transform = 'rotateY(180deg)';
+        // Add an event listener to the document to detect clicks outside the card
+        setTimeout(() => {
+          document.addEventListener('click', handleOutsideClick);
+        }, 0);
+      });
+    </script>
+  </body>
+</html>
